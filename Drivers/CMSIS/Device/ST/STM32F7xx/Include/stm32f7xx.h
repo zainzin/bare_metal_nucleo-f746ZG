@@ -253,10 +253,6 @@ typedef enum
   * @}
   */
 
-#ifdef USE_HAL_DRIVER
- #include "stm32f7xx_hal.h"
-#endif /* USE_HAL_DRIVER */
-
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
