@@ -12,3 +12,6 @@
 
 
 void init_spi1_master(void);
+void init_spi3_slave(void);
+void spi1_activate(void);
+void spi3_activate(void);

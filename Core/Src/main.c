@@ -22,40 +22,6 @@
 #include <stdio.h>
 #include <string.h>
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
-
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
-
-/* USER CODE BEGIN PFP */
-
-/* USER CODE END PFP */
-
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
 #define UART_RX_BUFFER_SIZE 64
 volatile char uart_rx_buffer[UART_RX_BUFFER_SIZE];
 volatile uint32_t uart_rx_index = 0;
@@ -78,11 +44,19 @@ int main(void)
   // PC13_EXTI_Init();
   // TIMER1_1Hz_Interrupt_Init();
   // USART3_Init();
-  USART3_Interrupt_Init();
+  // USART3_Interrupt_Init();
   // LED_Init();
-  i2c2_init_slave();
-  i2c1_init_master();
-  handle_i2c_master();
+  // i2c2_init_slave();
+  // i2c1_init_master();
+  // handle_i2c_master();
+
+
+  init_spi1_master();
+  init_spi3_slave();
+
+  spi1_activate();
+  spi3_activate();
+
   while (1)
   {
     /* USER CODE END WHILE */
@@ -118,6 +92,21 @@ int main(void)
 //     USART3_SendString("Stop Interrupting me");
 //   }
 // }
+
+
+
+void SPI1_IRQHandler(void) {
+  if (SPI1->SR & (1<<1)) {
+    volatile uint8_t *spi_dr = ((volatile uint8_t *)&SPI1->DR);
+    *spi_dr = p_tx_buffer[tx_index++];
+  }
+}
+
+void SPI3_IRQHandler(void) {
+  if (SPI3->SR & (1<<0)) {
+    rx_buffer[rx_index++] = SPI3->DR;
+  }
+}
 
 void I2C2_EV_IRQHandler(void) {
   if (I2C2->ISR & (1<<3)) {

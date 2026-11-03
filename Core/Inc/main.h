@@ -32,6 +32,7 @@ extern "C" {
 #include "timer.h"
 #include "uart.h"
 #include "i2c.h"
+#include "spi.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
