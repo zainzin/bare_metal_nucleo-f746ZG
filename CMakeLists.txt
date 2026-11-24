@@ -42,7 +42,9 @@ add_executable(${CMAKE_PROJECT_NAME}
         Core/Inc/i2c.h
         Core/Src/i2c.c
         Core/Inc/spi.h
-        Core/Src/spi.c)
+        Core/Src/spi.c
+        Core/Inc/gpio.h
+        Core/Src/gpio.c)
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)

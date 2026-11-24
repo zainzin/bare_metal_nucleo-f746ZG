@@ -26,7 +26,6 @@
 extern "C" {
 #endif
 
-/* Includes ------------------------------------------------------------------*/
 #include "stm32f7xx.h"
 #include "exti.h"
 #include "timer.h"
@@ -34,35 +33,11 @@ extern "C" {
 #include "i2c.h"
 #include "spi.h"
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
-
-/* Exported types ------------------------------------------------------------*/
-/* USER CODE BEGIN ET */
-
-/* USER CODE END ET */
-
-/* Exported constants --------------------------------------------------------*/
-/* USER CODE BEGIN EC */
-
-/* USER CODE END EC */
-
-/* Exported macro ------------------------------------------------------------*/
-/* USER CODE BEGIN EM */
-static void handle_i2c_master(void);
 uint32_t i2c2_get_address_matchcode(void);
-/* USER CODE END EM */
 
-/* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
-/* USER CODE BEGIN EFP */
 
-/* USER CODE END EFP */
-
-/* Private defines -----------------------------------------------------------*/
 #define USER_Btn_Pin GPIO_PIN_13
 #define USER_Btn_GPIO_Port GPIOC
 #define MCO_Pin GPIO_PIN_0
